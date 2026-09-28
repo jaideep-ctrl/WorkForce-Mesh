@@ -1,0 +1,6196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        WorkForce Mesh | Adaptive Workforce Recovery
+    </title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         CHART JS
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+
+    <!-- =====================================================
+         CUSTOM CSS
+    ====================================================== -->
+
+    <style>
+
+        body {
+
+            background: #f5f7fb;
+
+            font-family: Arial, sans-serif;
+
+            color: #1f2937;
+
+        }
+
+
+        .navbar {
+
+            background: #111827;
+
+        }
+
+
+        .navbar-brand {
+
+            font-weight: 700;
+
+            letter-spacing: .3px;
+
+        }
+
+
+        .hero {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #1f3c88
+                );
+
+            color: white;
+
+            padding: 45px 0;
+
+        }
+
+
+        .hero h1 {
+
+            font-weight: 800;
+
+        }
+
+
+        .section-title {
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .card {
+
+            border: none;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.06);
+
+        }
+
+
+        .kpi-card {
+
+            min-height: 145px;
+
+        }
+
+
+        .kpi-icon {
+
+            font-size: 28px;
+
+        }
+
+
+        .kpi-number {
+
+            font-size: 32px;
+
+            font-weight: 800;
+
+        }
+
+
+        .shortage-banner {
+
+            border-left:
+                6px solid #dc3545;
+
+        }
+
+
+        .success-banner {
+
+            border-left:
+                6px solid #198754;
+
+        }
+
+
+        .worker-card {
+
+            transition: .2s;
+
+            border:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .worker-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,.08);
+
+        }
+
+
+        .score-circle {
+
+            width: 72px;
+
+            height: 72px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+
+            font-size: 18px;
+
+            background: #eef2ff;
+
+            color: #1d4ed8;
+
+        }
+
+
+        .match-reason {
+
+            padding:
+                7px 10px;
+
+            border-radius: 8px;
+
+            margin-bottom: 6px;
+
+            font-size: 13px;
+
+        }
+
+
+        .reason-success {
+
+            background: #ecfdf5;
+
+            color: #047857;
+
+        }
+
+
+        .reason-danger {
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+        }
+
+
+        .reason-info {
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+        }
+
+
+        .wave-active {
+
+            border:
+                2px solid #dc3545;
+
+        }
+
+
+        .activity {
+
+            max-height: 280px;
+
+            overflow-y: auto;
+
+        }
+
+
+        .activity-item {
+
+            padding: 10px;
+
+            border-bottom:
+                1px solid #eee;
+
+            font-size: 14px;
+
+        }
+
+
+        .progress {
+
+            height: 10px;
+
+            border-radius: 10px;
+
+        }
+
+
+        .badge-soft {
+
+            padding:
+                7px 10px;
+
+            border-radius: 20px;
+
+        }
+
+
+        .sap-card {
+
+            min-height: 220px;
+
+            transition: .2s;
+
+        }
+
+
+        .sap-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,.10);
+
+        }
+
+
+        .sap-flow-card {
+
+            min-height: 250px;
+
+            position: relative;
+
+        }
+
+
+        .sap-flow-card.active {
+
+            border:
+                2px solid #0d6efd;
+
+        }
+
+
+        .sap-flow-card.completed {
+
+            border:
+                2px solid #198754;
+
+        }
+
+
+        .sap-icon {
+
+            font-size: 48px;
+
+        }
+
+
+        .sap-arrow {
+
+            font-size: 32px;
+
+            color: #6b7280;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .sap-status {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        .integration-log {
+
+            max-height: 250px;
+
+            overflow-y: auto;
+
+        }
+
+
+        .integration-step {
+
+            padding: 12px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .integration-step:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .integration-number {
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 50%;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e9ecef;
+
+            font-weight: 700;
+
+            margin-right: 10px;
+
+        }
+
+
+        .integration-number.done {
+
+            background: #198754;
+
+            color: white;
+
+        }
+
+
+        .integration-number.running {
+
+            background: #0d6efd;
+
+            color: white;
+
+        }
+
+
+        footer {
+
+            background: #111827;
+
+            color: #d1d5db;
+
+            padding: 25px 0;
+
+            margin-top: 50px;
+
+        }
+
+
+        .hidden {
+
+            display: none !important;
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .sap-arrow {
+
+                transform:
+                    rotate(90deg);
+
+                margin:
+                    10px 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<nav
+    class="navbar navbar-expand-lg navbar-dark sticky-top"
+>
+
+    <div class="container">
+
+        <a
+            class="navbar-brand"
+            href="#"
+        >
+
+            <i
+                class="bi bi-diagram-3-fill"
+            ></i>
+
+            WorkForce Mesh
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+        >
+
+            <span
+                class="navbar-toggler-icon"
+            ></span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navMenu"
+        >
+
+            <ul
+                class="navbar-nav ms-auto"
+            >
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#dashboard"
+                    >
+                        Dashboard
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#matching"
+                    >
+                        Matching
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#offers"
+                    >
+                        Offers
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#wave2"
+                    >
+                        Wave 2
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#simulator"
+                    >
+                        Simulator
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#analytics"
+                    >
+                        Analytics
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#sapArchitecture"
+                    >
+                        SAP
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span
+                    class="badge bg-light text-dark mb-3"
+                >
+                    Adaptive Workforce Recovery Platform
+                </span>
+
+
+                <h1>
+
+                    Workforce Shortage?
+
+                    <br>
+
+                    Activate the Mesh.
+
+                </h1>
+
+
+                <p class="lead mt-3">
+
+                    Detect workforce shortages,
+                    intelligently match flexible workers,
+                    activate shift offers and recover
+                    remaining shortages using backup
+                    workforce waves.
+
+                </p>
+
+
+                <button
+                    class="btn btn-light btn-lg mt-2"
+                    onclick="
+                        document
+                        .getElementById('controlPanel')
+                        .scrollIntoView({
+                            behavior:'smooth'
+                        })
+                    "
+                >
+
+                    <i
+                        class="bi bi-lightning-charge-fill"
+                    ></i>
+
+                    Start Recovery
+
+                </button>
+
+            </div>
+
+
+            <div class="col-lg-4 text-center">
+
+                <i
+                    class="bi bi-people-fill"
+                    style="
+                        font-size:150px;
+                        opacity:.18;
+                    "
+                ></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main
+    class="container py-5"
+    id="dashboard"
+>
+
+
+<!-- =====================================================
+     SHORTAGE ALERT
+====================================================== -->
+
+<div
+    id="shortageAlert"
+    class="alert alert-danger shortage-banner shadow-sm"
+>
+
+    <div class="d-flex align-items-center">
+
+        <i
+            class="bi bi-exclamation-triangle-fill fs-3 me-3"
+        ></i>
+
+
+        <div>
+
+            <strong id="shortageTitle">
+
+                Workforce shortage detected
+
+            </strong>
+
+
+            <div id="shortageText">
+
+                Loading workforce status...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     KPI CARDS
+====================================================== -->
+
+<div class="row g-4 mb-5">
+
+
+    <div class="col-md-3">
+
+        <div class="card kpi-card p-4">
+
+            <div
+                class="d-flex justify-content-between"
+            >
+
+                <div>
+
+                    <div class="text-muted">
+                        Required Workers
+                    </div>
+
+
+                    <div
+                        class="kpi-number"
+                        id="requiredKpi"
+                    >
+                        80
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="kpi-icon text-primary"
+                >
+
+                    <i
+                        class="bi bi-people"
+                    ></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="card kpi-card p-4">
+
+            <div
+                class="d-flex justify-content-between"
+            >
+
+                <div>
+
+                    <div class="text-muted">
+                        Confirmed Workers
+                    </div>
+
+
+                    <div
+                        class="kpi-number text-success"
+                        id="confirmedKpi"
+                    >
+                        52
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="kpi-icon text-success"
+                >
+
+                    <i
+                        class="bi bi-person-check-fill"
+                    ></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="card kpi-card p-4">
+
+            <div
+                class="d-flex justify-content-between"
+            >
+
+                <div>
+
+                    <div class="text-muted">
+                        Current Shortage
+                    </div>
+
+
+                    <div
+                        class="kpi-number text-danger"
+                        id="shortageKpi"
+                    >
+                        28
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="kpi-icon text-danger"
+                >
+
+                    <i
+                        class="bi bi-exclamation-octagon"
+                    ></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="card kpi-card p-4">
+
+            <div
+                class="d-flex justify-content-between"
+            >
+
+                <div>
+
+                    <div class="text-muted">
+                        Backup Workers
+                    </div>
+
+
+                    <div
+                        class="kpi-number text-warning"
+                        id="backupKpi"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="kpi-icon text-warning"
+                >
+
+                    <i
+                        class="bi bi-person-plus-fill"
+                    ></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     OFFER KPI
+====================================================== -->
+
+<div class="row g-4 mb-5">
+
+
+    <div class="col-md-4">
+
+        <div class="card p-4">
+
+            <div class="text-muted">
+                Shift Offers
+            </div>
+
+
+            <div
+                class="kpi-number"
+                id="offersKpi"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card p-4">
+
+            <div class="text-muted">
+                Accepted
+            </div>
+
+
+            <div
+                class="kpi-number text-success"
+                id="acceptedKpi"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card p-4">
+
+            <div class="text-muted">
+                Declined
+            </div>
+
+
+            <div
+                class="kpi-number text-danger"
+                id="declinedKpi"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NEXT ACTION
+====================================================== -->
+
+<div class="card p-4 mb-5">
+
+    <div class="d-flex align-items-center">
+
+        <div class="me-3">
+
+            <i
+                class="bi bi-stars fs-2 text-warning"
+            ></i>
+
+        </div>
+
+
+        <div>
+
+            <div class="text-muted">
+                Next Best Action
+            </div>
+
+
+            <strong id="nextAction">
+
+                Activate Workforce Mesh.
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONTROL PANEL
+====================================================== -->
+
+<section
+    id="controlPanel"
+    class="mb-5"
+>
+
+    <h2 class="section-title">
+
+        <i class="bi bi-sliders"></i>
+
+        Manager Control Panel
+
+    </h2>
+
+
+    <div class="card p-4">
+
+        <div class="row g-3">
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Required Workers
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control"
+                    id="requiredInput"
+                    value="80"
+                    min="1"
+                >
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Confirmed Workers
+                </label>
+
+
+                <input
+                    type="number"
+                    class="form-control"
+                    id="confirmedInput"
+                    value="52"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Required Skill
+                </label>
+
+
+                <select
+                    class="form-select"
+                    id="skillInput"
+                >
+
+                    <option>
+                        Warehouse Operator
+                    </option>
+
+                    <option>
+                        Inventory Assistant
+                    </option>
+
+                    <option>
+                        Packing Specialist
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Search Radius
+                </label>
+
+
+                <div class="input-group">
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="radiusInput"
+                        value="5"
+                        min="1"
+                    >
+
+
+                    <span
+                        class="input-group-text"
+                    >
+                        km
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Shift Start
+                </label>
+
+
+                <select
+                    class="form-select"
+                    id="shiftStart"
+                >
+
+                    <option>
+                        5 PM
+                    </option>
+
+                    <option selected>
+                        6 PM
+                    </option>
+
+                    <option>
+                        7 PM
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Shift End
+                </label>
+
+
+                <select
+                    class="form-select"
+                    id="shiftEnd"
+                >
+
+                    <option>
+                        9 PM
+                    </option>
+
+                    <option selected>
+                        10 PM
+                    </option>
+
+                    <option>
+                        11 PM
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="col-md-3 d-flex align-items-end"
+            >
+
+                <button
+                    class="btn btn-primary w-100"
+                    onclick="calculateRequirement()"
+                >
+
+                    <i class="bi bi-calculator"></i>
+
+                    Calculate Requirement
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="col-md-3 d-flex align-items-end"
+            >
+
+                <button
+                    class="btn btn-dark w-100"
+                    onclick="activateMesh()"
+                >
+
+                    <i
+                        class="bi bi-lightning-charge-fill"
+                    ></i>
+
+                    Activate Workforce Mesh
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RECOVERY STATUS
+====================================================== -->
+
+<section class="mb-5">
+
+    <h2 class="section-title">
+
+        Recovery Status
+
+    </h2>
+
+
+    <div class="card p-4">
+
+        <div
+            class="d-flex justify-content-between mb-2"
+        >
+
+            <span>
+                Workforce Coverage
+            </span>
+
+
+            <strong id="coverageText">
+                65%
+            </strong>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div
+                id="coverageBar"
+                class="progress-bar"
+                role="progressbar"
+                style="width:65%"
+            ></div>
+
+        </div>
+
+
+        <div class="mt-3">
+
+            <span
+                id="recoveryBadge"
+                class="badge bg-warning text-dark badge-soft"
+            >
+                High Shortage
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACTIVITY LOG
+====================================================== -->
+
+<section class="mb-5">
+
+    <h2 class="section-title">
+
+        <i class="bi bi-clock-history"></i>
+
+        Activity Log
+
+    </h2>
+
+
+    <div
+        class="card activity"
+        id="activityLog"
+    >
+
+        <div class="activity-item">
+
+            <i
+                class="bi bi-info-circle text-primary"
+            ></i>
+
+            System initialized.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WORKER AVAILABILITY
+====================================================== -->
+
+<section class="mb-5">
+
+    <h2 class="section-title">
+
+        <i class="bi bi-calendar-check"></i>
+
+        Worker Availability
+
+    </h2>
+
+
+    <div
+        class="card p-3"
+        id="availabilityContainer"
+    >
+
+        Loading worker availability...
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MATCHING
+====================================================== -->
+
+<section
+    id="matching"
+    class="mb-5"
+>
+
+    <div
+        class="d-flex justify-content-between align-items-center mb-3"
+    >
+
+        <h2 class="section-title mb-0">
+
+            <i class="bi bi-cpu"></i>
+
+            Wave 1 — Intelligent Worker Matching
+
+        </h2>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="findSuitableWorkers()"
+        >
+
+            <i class="bi bi-search"></i>
+
+            Find Suitable Workers
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="matchingInfo"
+        class="alert alert-light border"
+    >
+
+        Matching workers using:
+
+        <strong>
+            Skill + Availability + Distance
+        </strong>
+
+    </div>
+
+
+    <div
+        id="wave1Workers"
+        class="row g-4"
+    >
+
+        <div class="col-12 text-muted">
+
+            Activate Workforce Mesh and click
+
+            <strong>
+                Find Suitable Workers
+            </strong>.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     OFFERS
+====================================================== -->
+
+<section
+    id="offers"
+    class="mb-5"
+>
+
+    <h2 class="section-title">
+
+        <i class="bi bi-send"></i>
+
+        Shift Offers
+
+    </h2>
+
+
+    <div
+        id="offerList"
+        class="row g-3"
+    >
+
+        <div class="col-12">
+
+            <div
+                class="card p-4 text-muted"
+            >
+
+                No offers sent yet.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WAVE 2
+====================================================== -->
+
+<section
+    id="wave2"
+    class="mb-5"
+>
+
+    <h2 class="section-title">
+
+        <i class="bi bi-shield-plus"></i>
+
+        Wave 2 — Backup Workforce
+
+    </h2>
+
+
+    <div
+        id="wave2Card"
+        class="card p-4"
+    >
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h4>
+
+                    <i
+                        class="bi bi-diagram-3"
+                    ></i>
+
+                    Backup Recovery Network
+
+                </h4>
+
+
+                <p
+                    id="wave2Recommendation"
+                    class="text-muted"
+                >
+
+                    Wave 2 will expand the search radius
+                    and activate backup workers if Wave 1
+                    cannot fully recover the shortage.
+
+                </p>
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4">
+
+                        <small class="text-muted">
+                            Search Radius
+                        </small>
+
+
+                        <h5 id="wave2Radius">
+                            10 km
+                        </h5>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <small class="text-muted">
+                            Dynamic Incentive
+                        </small>
+
+
+                        <h5 id="wave2Incentive">
+                            ₹0
+                        </h5>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <small class="text-muted">
+                            Status
+                        </small>
+
+
+                        <h5>
+
+                            <span
+                                id="wave2Badge"
+                                class="badge bg-secondary"
+                            >
+                                Not Active
+                            </span>
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="col-lg-4 text-lg-end mt-3 mt-lg-0"
+            >
+
+                <button
+                    id="wave2Button"
+                    class="btn btn-warning btn-lg"
+                    onclick="activateWave2()"
+                >
+
+                    <i
+                        class="bi bi-lightning-charge-fill"
+                    ></i>
+
+                    Activate Wave 2
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <hr class="my-4">
+
+
+        <h5>
+            Backup Worker Pool
+        </h5>
+
+
+        <div
+            id="backupWorkers"
+            class="row g-3 mt-1"
+        >
+
+            <div class="col-12 text-muted">
+
+                Wave 2 workers will appear after activation.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SIMULATOR
+====================================================== -->
+
+<section
+    id="simulator"
+    class="mb-5"
+>
+
+    <h2 class="section-title">
+
+        <i class="bi bi-sliders2"></i>
+
+        What-if Simulator
+
+    </h2>
+
+
+    <div class="card p-4">
+
+        <div class="row g-3">
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Required Workers
+                </label>
+
+
+                <input
+                    type="number"
+                    id="simRequired"
+                    class="form-control"
+                    value="100"
+                >
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Confirmed Workers
+                </label>
+
+
+                <input
+                    type="number"
+                    id="simConfirmed"
+                    class="form-control"
+                    value="52"
+                >
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Wave 1 Recovery
+                </label>
+
+
+                <input
+                    type="number"
+                    id="simWave1"
+                    class="form-control"
+                    value="15"
+                >
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    Wave 2 Recovery
+                </label>
+
+
+                <input
+                    type="number"
+                    id="simWave2"
+                    class="form-control"
+                    value="12"
+                >
+
+            </div>
+
+
+            <div class="col-12">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="runSimulation()"
+                >
+
+                    <i class="bi bi-play-fill"></i>
+
+                    Run Simulation
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="simulationResult"
+            class="mt-4"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ANALYTICS
+====================================================== -->
+
+<section
+    id="analytics"
+    class="mb-5"
+>
+
+    <h2 class="section-title">
+
+        <i class="bi bi-bar-chart-fill"></i>
+
+        Workforce Analytics
+
+    </h2>
+
+
+    <!-- ANALYTICS KPI -->
+
+    <div class="row g-4 mb-4">
+
+
+        <div class="col-md-3">
+
+            <div class="card p-4">
+
+                <div class="text-muted">
+                    Recovery Rate
+                </div>
+
+
+                <div
+                    id="analyticsRecoveryRate"
+                    class="kpi-number text-primary"
+                >
+                    65%
+                </div>
+
+
+                <small class="text-muted">
+                    Workforce coverage
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="card p-4">
+
+                <div class="text-muted">
+                    Confirmed Workers
+                </div>
+
+
+                <div
+                    id="analyticsConfirmed"
+                    class="kpi-number text-success"
+                >
+                    52
+                </div>
+
+
+                <small class="text-muted">
+                    Workers confirmed
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="card p-4">
+
+                <div class="text-muted">
+                    Remaining Shortage
+                </div>
+
+
+                <div
+                    id="analyticsShortage"
+                    class="kpi-number text-danger"
+                >
+                    28
+                </div>
+
+
+                <small class="text-muted">
+                    Workers still required
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="card p-4">
+
+                <div class="text-muted">
+                    Active Recovery Wave
+                </div>
+
+
+                <div
+                    id="analyticsWave"
+                    class="kpi-number text-warning"
+                >
+                    Wave 1
+                </div>
+
+
+                <small class="text-muted">
+                    Current recovery stage
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANALYTICS CHARTS -->
+
+    <div class="row g-4">
+
+
+        <div class="col-lg-6">
+
+            <div class="card p-4">
+
+                <h5>
+                    Workforce Recovery
+                </h5>
+
+
+                <canvas
+                    id="workforceChart"
+                ></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6">
+
+            <div class="card p-4">
+
+                <h5>
+                    Match Score Distribution
+                </h5>
+
+
+                <canvas
+                    id="matchScoreChart"
+                ></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STEP 9
+     SAP ARCHITECTURE
+====================================================== -->
+
+<section
+    id="sapArchitecture"
+    class="mb-5"
+>
+
+    <h2 class="section-title">
+
+        <i
+            class="bi bi-cloud-check"
+        ></i>
+
+        SAP Integration Architecture
+
+    </h2>
+
+
+    <div
+        class="alert alert-primary"
+    >
+
+        <div
+            class="d-flex align-items-start"
+        >
+
+            <i
+                class="bi bi-info-circle-fill fs-4 me-3"
+            ></i>
+
+
+            <div>
+
+                <strong>
+                    Proposed SAP Architecture
+                </strong>
+
+
+                <div class="mt-1">
+
+                    This prototype demonstrates a proposed
+                    integration flow. The SAP systems shown
+                    below are architectural components for
+                    the hackathon concept and are not live
+                    system connections.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SAP FLOW
+    ================================================== -->
+
+    <div class="card p-4 mb-4">
+
+        <div
+            class="d-flex justify-content-between align-items-center mb-4"
+        >
+
+            <div>
+
+                <h4 class="mb-1">
+
+                    <i
+                        class="bi bi-diagram-3-fill text-primary"
+                    ></i>
+
+                    Workforce Recovery SAP Flow
+
+                </h4>
+
+
+                <p
+                    class="text-muted mb-0"
+                >
+
+                    Workforce data → demand planning →
+                    intelligent recommendation →
+                    management analytics
+
+                </p>
+
+            </div>
+
+
+            <button
+                id="sapFlowButton"
+                class="btn btn-primary"
+                onclick="runSAPIntegration()"
+            >
+
+                <i
+                    class="bi bi-play-fill"
+                ></i>
+
+                Run SAP Integration Flow
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="sapFlowStatus"
+            class="alert alert-secondary"
+        >
+
+            <i
+                class="bi bi-hourglass-split"
+            ></i>
+
+            SAP integration flow ready.
+
+        </div>
+
+
+        <!-- FLOW ROW -->
+
+        <div
+            class="row align-items-stretch g-3"
+        >
+
+
+            <!-- BTP -->
+
+            <div class="col-lg">
+
+                <div
+                    id="sapBtpCard"
+                    class="card sap-flow-card p-4 h-100"
+                >
+
+                    <div
+                        class="text-primary sap-icon"
+                    >
+
+                        <i
+                            class="bi bi-cloud-fill"
+                        ></i>
+
+                    </div>
+
+
+                    <span
+                        class="badge bg-primary mb-2"
+                    >
+                        CORE PLATFORM
+                    </span>
+
+
+                    <h4>
+                        SAP BTP
+                    </h4>
+
+
+                    <p class="text-muted">
+
+                        Core application and
+                        integration layer for
+                        Workforce Mesh.
+
+                    </p>
+
+
+                    <div
+                        id="sapBtpStatus"
+                        class="sap-status text-secondary"
+                    >
+
+                        <i
+                            class="bi bi-circle"
+                        ></i>
+
+                        Ready
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ARROW -->
+
+            <div
+                class="col-lg-auto sap-arrow"
+            >
+
+                <i
+                    class="bi bi-arrow-right"
+                ></i>
+
+            </div>
+
+
+            <!-- SUCCESSFACTORS -->
+
+            <div class="col-lg">
+
+                <div
+                    id="sapSfCard"
+                    class="card sap-flow-card p-4 h-100"
+                >
+
+                    <div
+                        class="text-success sap-icon"
+                    >
+
+                        <i
+                            class="bi bi-people-fill"
+                        ></i>
+
+                    </div>
+
+
+                    <span
+                        class="badge bg-success mb-2"
+                    >
+                        WORKFORCE DATA
+                    </span>
+
+
+                    <h4>
+                        SAP SuccessFactors
+                    </h4>
+
+
+                    <p class="text-muted">
+
+                        Proposed workforce source
+                        for employee, skill and
+                        availability information.
+
+                    </p>
+
+
+                    <div
+                        id="sapSfStatus"
+                        class="sap-status text-secondary"
+                    >
+
+                        <i
+                            class="bi bi-circle"
+                        ></i>
+
+                        Ready
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ARROW -->
+
+            <div
+                class="col-lg-auto sap-arrow"
+            >
+
+                <i
+                    class="bi bi-arrow-right"
+                ></i>
+
+            </div>
+
+
+            <!-- IBP -->
+
+            <div class="col-lg">
+
+                <div
+                    id="sapIbpCard"
+                    class="card sap-flow-card p-4 h-100"
+                >
+
+                    <div
+                        class="text-warning sap-icon"
+                    >
+
+                        <i
+                            class="bi bi-graph-up-arrow"
+                        ></i>
+
+                    </div>
+
+
+                    <span
+                        class="badge bg-warning text-dark mb-2"
+                    >
+                        DEMAND PLANNING
+                    </span>
+
+
+                    <h4>
+                        SAP IBP
+                    </h4>
+
+
+                    <p class="text-muted">
+
+                        Proposed demand planning
+                        and what-if scenario
+                        support.
+
+                    </p>
+
+
+                    <div
+                        id="sapIbpStatus"
+                        class="sap-status text-secondary"
+                    >
+
+                        <i
+                            class="bi bi-circle"
+                        ></i>
+
+                        Ready
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ARROW -->
+
+            <div
+                class="col-lg-auto sap-arrow"
+            >
+
+                <i
+                    class="bi bi-arrow-right"
+                ></i>
+
+            </div>
+
+
+            <!-- BUSINESS AI -->
+
+            <div class="col-lg">
+
+                <div
+                    id="sapAiCard"
+                    class="card sap-flow-card p-4 h-100"
+                >
+
+                    <div
+                        class="text-danger sap-icon"
+                    >
+
+                        <i
+                            class="bi bi-robot"
+                        ></i>
+
+                    </div>
+
+
+                    <span
+                        class="badge bg-danger mb-2"
+                    >
+                        INTELLIGENCE
+                    </span>
+
+
+                    <h4>
+                        SAP Business AI
+                    </h4>
+
+
+                    <p class="text-muted">
+
+                        Proposed intelligent
+                        recommendations for
+                        workforce recovery.
+
+                    </p>
+
+
+                    <div
+                        id="sapAiStatus"
+                        class="sap-status text-secondary"
+                    >
+
+                        <i
+                            class="bi bi-circle"
+                        ></i>
+
+                        Ready
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ARROW -->
+
+            <div
+                class="col-lg-auto sap-arrow"
+            >
+
+                <i
+                    class="bi bi-arrow-right"
+                ></i>
+
+            </div>
+
+
+            <!-- SAC -->
+
+            <div class="col-lg">
+
+                <div
+                    id="sapSacCard"
+                    class="card sap-flow-card p-4 h-100"
+                >
+
+                    <div
+                        class="text-info sap-icon"
+                    >
+
+                        <i
+                            class="bi bi-bar-chart-fill"
+                        ></i>
+
+                    </div>
+
+
+                    <span
+                        class="badge bg-info text-dark mb-2"
+                    >
+                        ANALYTICS
+                    </span>
+
+
+                    <h4>
+                        SAP Analytics Cloud
+                    </h4>
+
+
+                    <p class="text-muted">
+
+                        Proposed management
+                        analytics and recovery
+                        monitoring layer.
+
+                    </p>
+
+
+                    <div
+                        id="sapSacStatus"
+                        class="sap-status text-secondary"
+                    >
+
+                        <i
+                            class="bi bi-circle"
+                        ></i>
+
+                        Ready
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SAP DATA FLOW DETAILS
+    ================================================== -->
+
+    <div class="row g-4 mb-4">
+
+
+        <div class="col-lg-6">
+
+            <div class="card p-4 h-100">
+
+                <h5>
+
+                    <i
+                        class="bi bi-database-check text-primary"
+                    ></i>
+
+                    Workforce Data Flow
+
+                </h5>
+
+
+                <div class="integration-log mt-3">
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            1
+                        </span>
+
+                        Workforce information
+
+                    </div>
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            2
+                        </span>
+
+                        Skill and availability data
+
+                    </div>
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            3
+                        </span>
+
+                        Workforce shortage calculation
+
+                    </div>
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            4
+                        </span>
+
+                        Worker matching and recovery
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6">
+
+            <div class="card p-4 h-100">
+
+                <h5>
+
+                    <i
+                        class="bi bi-lightbulb text-warning"
+                    ></i>
+
+                    Decision Support Flow
+
+                </h5>
+
+
+                <div class="integration-log mt-3">
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            1
+                        </span>
+
+                        Demand scenario
+
+                    </div>
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            2
+                        </span>
+
+                        What-if analysis
+
+                    </div>
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            3
+                        </span>
+
+                        Intelligent recommendation
+
+                    </div>
+
+
+                    <div class="integration-step">
+
+                        <span
+                            class="integration-number"
+                        >
+                            4
+                        </span>
+
+                        Management analytics
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SAP INTEGRATION ACTIVITY
+    ================================================== -->
+
+    <div class="card p-4">
+
+        <div
+            class="d-flex justify-content-between align-items-center"
+        >
+
+            <div>
+
+                <h5 class="mb-1">
+
+                    <i
+                        class="bi bi-activity"
+                    ></i>
+
+                    SAP Integration Activity
+
+                </h5>
+
+
+                <small class="text-muted">
+
+                    Simulated architecture execution
+
+                </small>
+
+            </div>
+
+
+            <span
+                id="sapOverallBadge"
+                class="badge bg-secondary"
+            >
+                Not Started
+            </span>
+
+        </div>
+
+
+        <hr>
+
+
+        <div
+            id="sapActivityLog"
+        >
+
+            <div
+                class="text-muted"
+            >
+
+                Click
+                <strong>
+                    Run SAP Integration Flow
+                </strong>
+                to demonstrate the proposed architecture.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <h5>
+            WorkForce Mesh
+        </h5>
+
+
+        <p class="mb-0">
+
+            Adaptive Workforce Recovery Platform
+
+        </p>
+
+
+        <small>
+
+            SAP Hackathon Prototype
+
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+    class="toast-container position-fixed bottom-0 end-0 p-3"
+>
+
+    <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+    >
+
+        <div class="toast-header">
+
+            <strong class="me-auto">
+                WorkForce Mesh
+            </strong>
+
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+            ></button>
+
+        </div>
+
+
+        <div
+            id="toastBody"
+            class="toast-body"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+====================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let requiredWorkers = 80;
+
+let confirmedWorkers = 52;
+
+let sentOffers = [];
+
+let acceptedWorkers = [];
+
+let declinedWorkers = [];
+
+let wave1Matched = [];
+
+let wave2Workers = [];
+
+let wave2Activated = false;
+
+let workforceChart = null;
+
+let matchScoreChart = null;
+
+let sapFlowRunning = false;
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message) {
+
+    document.getElementById(
+        "toastBody"
+    ).innerText = message;
+
+
+    const toastElement =
+        document.getElementById(
+            "liveToast"
+        );
+
+
+    const toast =
+        new bootstrap.Toast(
+            toastElement
+        );
+
+
+    toast.show();
+
+}
+
+
+/* =====================================================
+   ACTIVITY
+===================================================== */
+
+function addActivity(message) {
+
+    const log =
+        document.getElementById(
+            "activityLog"
+        );
+
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.className =
+        "activity-item";
+
+
+    const time =
+        new Date().toLocaleTimeString();
+
+
+    item.innerHTML = `
+
+        <i
+            class="bi bi-check-circle text-success"
+        ></i>
+
+        <strong>${time}</strong>
+        —
+        ${message}
+
+    `;
+
+
+    log.prepend(item);
+
+}
+
+
+/* =====================================================
+   CALCULATE REQUIREMENT
+===================================================== */
+
+async function calculateRequirement() {
+
+    requiredWorkers =
+        Number(
+            document.getElementById(
+                "requiredInput"
+            ).value
+        );
+
+
+    confirmedWorkers =
+        Number(
+            document.getElementById(
+                "confirmedInput"
+            ).value
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/detect-shortage",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        required_workers:
+                            requiredWorkers,
+
+                        confirmed_workers:
+                            confirmedWorkers
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        updateDashboard(
+            data.required_workers,
+            data.confirmed_workers,
+            data.shortage
+        );
+
+
+        addActivity(
+            `Requirement calculated. Shortage: ${data.shortage}`
+        );
+
+
+        showToast(
+            `Current shortage: ${data.shortage}`
+        );
+
+    }
+
+    catch (error) {
+
+        showToast(
+            "Unable to calculate requirement."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE DASHBOARD
+===================================================== */
+
+function updateDashboard(
+    required,
+    confirmed,
+    shortage
+) {
+
+    requiredWorkers = required;
+
+    confirmedWorkers = confirmed;
+
+
+    document.getElementById(
+        "requiredKpi"
+    ).innerText = required;
+
+
+    document.getElementById(
+        "confirmedKpi"
+    ).innerText = confirmed;
+
+
+    document.getElementById(
+        "shortageKpi"
+    ).innerText = shortage;
+
+
+    document.getElementById(
+        "requiredInput"
+    ).value = required;
+
+
+    document.getElementById(
+        "confirmedInput"
+    ).value = confirmed;
+
+
+    const coverage =
+        required > 0
+        ? Math.min(
+            100,
+            Math.round(
+                (confirmed / required) * 100
+            )
+        )
+        : 0;
+
+
+    document.getElementById(
+        "coverageText"
+    ).innerText =
+        `${coverage}%`;
+
+
+    document.getElementById(
+        "coverageBar"
+    ).style.width =
+        `${coverage}%`;
+
+
+    if (shortage === 0) {
+
+        document.getElementById(
+            "shortageAlert"
+        ).className =
+            "alert alert-success success-banner shadow-sm";
+
+
+        document.getElementById(
+            "shortageTitle"
+        ).innerText =
+            "Workforce fully recovered";
+
+
+        document.getElementById(
+            "shortageText"
+        ).innerText =
+            "All required workers are confirmed.";
+
+
+        document.getElementById(
+            "recoveryBadge"
+        ).className =
+            "badge bg-success badge-soft";
+
+
+        document.getElementById(
+            "recoveryBadge"
+        ).innerText =
+            "Fully Recovered";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "shortageAlert"
+        ).className =
+            "alert alert-danger shortage-banner shadow-sm";
+
+
+        document.getElementById(
+            "shortageTitle"
+        ).innerText =
+            "Workforce shortage detected";
+
+
+        document.getElementById(
+            "shortageText"
+        ).innerText =
+            `${shortage} worker(s) still required.`;
+
+
+        document.getElementById(
+            "recoveryBadge"
+        ).className =
+            "badge bg-danger badge-soft";
+
+
+        document.getElementById(
+            "recoveryBadge"
+        ).innerText =
+            "Shortage";
+
+    }
+
+
+    updateWorkforceChart();
+
+    updateAnalyticsKPIs();
+
+    checkWave2Requirement();
+
+}
+
+
+/* =====================================================
+   NEXT ACTION
+===================================================== */
+
+function setNextAction(
+    type,
+    message
+) {
+
+    document.getElementById(
+        "nextAction"
+    ).innerText =
+        message;
+
+}
+
+
+/* =====================================================
+   ACTIVATE MESH
+===================================================== */
+
+async function activateMesh() {
+
+    const radius =
+        Number(
+            document.getElementById(
+                "radiusInput"
+            ).value
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/activate-mesh",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        radius: radius
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            addActivity(
+                `Workforce Mesh activated with ${radius} km search radius.`
+            );
+
+
+            setNextAction(
+                "info",
+                "Find suitable workers using the intelligent matching engine."
+            );
+
+
+            showToast(
+                "Workforce Mesh activated."
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        showToast(
+            "Unable to activate Workforce Mesh."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FIND WORKERS
+===================================================== */
+
+async function findSuitableWorkers() {
+
+    const requiredSkill =
+        document.getElementById(
+            "skillInput"
+        ).value;
+
+
+    const shiftStart =
+        document.getElementById(
+            "shiftStart"
+        ).value;
+
+
+    const shiftEnd =
+        document.getElementById(
+            "shiftEnd"
+        ).value;
+
+
+    const radius =
+        Number(
+            document.getElementById(
+                "radiusInput"
+            ).value
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/find-suitable-workers",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        required_skill:
+                            requiredSkill,
+
+                        shift_start:
+                            shiftStart,
+
+                        shift_end:
+                            shiftEnd,
+
+                        radius:
+                            radius
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showToast(
+                data.message ||
+                "Matching failed."
+            );
+
+            return;
+
+        }
+
+
+        wave1Matched =
+            data.workers || [];
+
+
+        renderWave1Workers(
+            wave1Matched
+        );
+
+
+        document.getElementById(
+            "matchingInfo"
+        ).innerHTML = `
+
+            <strong>
+                ${data.count}
+            </strong>
+
+            suitable worker(s) found.
+
+            Matching based on:
+
+            <strong>
+                Skill + Availability + Distance
+            </strong>
+
+            <br>
+
+            <small class="text-muted">
+
+                Workers are ranked using an explainable
+                100-point matching score.
+
+            </small>
+
+        `;
+
+
+        addActivity(
+            `${data.count} suitable worker(s) identified.`
+        );
+
+
+        updateMatchScoreChart(
+            wave1Matched
+        );
+
+
+        if (
+            wave1Matched.length === 0 &&
+            requiredWorkers > confirmedWorkers
+        ) {
+
+            setNextAction(
+                "warning",
+                "No suitable Wave 1 workers found. Consider activating Wave 2."
+            );
+
+
+            document.getElementById(
+                "wave2Card"
+            ).classList.add(
+                "wave-active"
+            );
+
+
+            document.getElementById(
+                "wave2Recommendation"
+            ).innerText =
+                "No suitable Wave 1 workers found. Activate Wave 2 to expand the search radius.";
+
+        }
+
+        else {
+
+            setNextAction(
+                "info",
+                "Review the match scores and send shift offers to suitable workers."
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Unable to find suitable workers."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER WAVE 1
+===================================================== */
+
+function renderWave1Workers(
+    workers
+) {
+
+    const container =
+        document.getElementById(
+            "wave1Workers"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (!workers.length) {
+
+        container.innerHTML = `
+
+            <div class="col-12">
+
+                <div class="alert alert-warning">
+
+                    <i
+                        class="bi bi-exclamation-triangle"
+                    ></i>
+
+                    No suitable workers found
+                    within the selected radius.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    workers.forEach(
+        worker => {
+
+            container.appendChild(
+                createWorkerCard(
+                    worker
+                )
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CREATE WORKER CARD
+===================================================== */
+
+function createWorkerCard(
+    worker
+) {
+
+    const col =
+        document.createElement(
+            "div"
+        );
+
+
+    col.className =
+        "col-lg-6";
+
+
+    let scoreClass =
+        "text-primary";
+
+
+    if (worker.score >= 80) {
+
+        scoreClass =
+            "text-success";
+
+    }
+
+    else if (worker.score >= 60) {
+
+        scoreClass =
+            "text-warning";
+
+    }
+
+    else {
+
+        scoreClass =
+            "text-danger";
+
+    }
+
+
+    let reasonsHtml = "";
+
+
+    if (
+        worker.reasons &&
+        worker.reasons.length
+    ) {
+
+        worker.reasons.forEach(
+            reason => {
+
+                let reasonClass =
+                    "reason-info";
+
+
+                let icon =
+                    "bi-info-circle";
+
+
+                if (
+                    reason.type ===
+                    "success"
+                ) {
+
+                    reasonClass =
+                        "reason-success";
+
+
+                    icon =
+                        "bi-check-circle-fill";
+
+                }
+
+
+                if (
+                    reason.type ===
+                    "danger"
+                ) {
+
+                    reasonClass =
+                        "reason-danger";
+
+
+                    icon =
+                        "bi-x-circle-fill";
+
+                }
+
+
+                reasonsHtml += `
+
+                    <div
+                        class="match-reason ${reasonClass}"
+                    >
+
+                        <i
+                            class="bi ${icon}"
+                        ></i>
+
+                        ${reason.text}
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    col.innerHTML = `
+
+        <div
+            class="card worker-card p-4 h-100"
+        >
+
+            <div
+                class="d-flex justify-content-between"
+            >
+
+                <div>
+
+                    <h5 class="mb-1">
+                        ${worker.name}
+                    </h5>
+
+
+                    <span
+                        class="badge bg-light text-dark"
+                    >
+                        ${worker.skill}
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="score-circle ${scoreClass}"
+                >
+
+                    ${worker.score}
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-3">
+
+                <div
+                    class="d-flex justify-content-between"
+                >
+
+                    <span>
+
+                        <i
+                            class="bi bi-geo-alt"
+                        ></i>
+
+                        ${worker.distance} km
+
+                    </span>
+
+
+                    <span>
+
+                        <i
+                            class="bi bi-clock"
+                        ></i>
+
+                        ${worker.availability}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <h6>
+
+                <i
+                    class="bi bi-lightbulb"
+                ></i>
+
+                Why this worker?
+
+            </h6>
+
+
+            <div>
+
+                ${reasonsHtml}
+
+            </div>
+
+
+            <div class="mt-3">
+
+                <div
+                    class="d-flex justify-content-between"
+                >
+
+                    <small
+                        class="text-muted"
+                    >
+                        Match strength
+                    </small>
+
+
+                    <strong>
+                        ${worker.score}/100
+                    </strong>
+
+                </div>
+
+
+                <div class="progress mt-2">
+
+                    <div
+                        class="progress-bar"
+                        style="
+                            width:${worker.score}%
+                        "
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary w-100 mt-4"
+                onclick='sendShiftOffer(${JSON.stringify(worker)})'
+            >
+
+                <i
+                    class="bi bi-send"
+                ></i>
+
+                Send Shift Offer
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    return col;
+
+}
+
+
+/* =====================================================
+   SEND SHIFT OFFER
+===================================================== */
+
+async function sendShiftOffer(
+    worker
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/send-offer",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        worker_name:
+                            worker.name,
+
+                        score:
+                            worker.score,
+
+                        reasons:
+                            worker.reasons,
+
+                        wave:
+                            1
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showToast(
+                data.message
+            );
+
+            return;
+
+        }
+
+
+        sentOffers.push(
+            data.offer
+        );
+
+
+        renderOfferList();
+
+
+        addActivity(
+            `Shift offer sent to ${worker.name}.`
+        );
+
+
+        showToast(
+            `Offer sent to ${worker.name}.`
+        );
+
+
+        updateOfferKpis();
+
+
+        checkWave2Requirement();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Unable to send offer."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER OFFERS
+===================================================== */
+
+function renderOfferList() {
+
+    const container =
+        document.getElementById(
+            "offerList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (!sentOffers.length) {
+
+        container.innerHTML = `
+
+            <div class="col-12">
+
+                <div
+                    class="card p-4 text-muted"
+                >
+
+                    No offers sent yet.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    sentOffers.forEach(
+        offer => {
+
+            const col =
+                document.createElement(
+                    "div"
+                );
+
+
+            col.className =
+                "col-lg-6";
+
+
+            let statusClass =
+                "bg-warning text-dark";
+
+
+            if (
+                offer.status ===
+                "Accepted"
+            ) {
+
+                statusClass =
+                    "bg-success";
+
+            }
+
+            else if (
+                offer.status ===
+                "Declined"
+            ) {
+
+                statusClass =
+                    "bg-danger";
+
+            }
+
+
+            let buttons = "";
+
+
+            if (
+                offer.status ===
+                "Pending"
+            ) {
+
+                buttons = `
+
+                    <div
+                        class="d-flex gap-2 mt-3"
+                    >
+
+                        <button
+                            class="btn btn-success flex-fill"
+                            onclick="workerAccepts('${offer.worker_name}')"
+                        >
+
+                            <i
+                                class="bi bi-check-lg"
+                            ></i>
+
+                            Accept
+
+                        </button>
+
+
+                        <button
+                            class="btn btn-outline-danger flex-fill"
+                            onclick="workerDeclines('${offer.worker_name}')"
+                        >
+
+                            <i
+                                class="bi bi-x-lg"
+                            ></i>
+
+                            Decline
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            col.innerHTML = `
+
+                <div class="card p-4">
+
+                    <div
+                        class="d-flex justify-content-between"
+                    >
+
+                        <div>
+
+                            <h5>
+                                ${offer.worker_name}
+                            </h5>
+
+
+                            <small
+                                class="text-muted"
+                            >
+
+                                Wave ${offer.wave}
+
+                            </small>
+
+                        </div>
+
+
+                        <span
+                            class="badge ${statusClass}"
+                        >
+
+                            ${offer.status}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="mt-3">
+
+                        <strong>
+                            Match Score:
+                        </strong>
+
+                        ${offer.score}/100
+
+                    </div>
+
+
+                    ${buttons}
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                col
+            );
+
+        }
+    );
+
+
+    updateOfferKpis();
+
+}
+
+
+/* =====================================================
+   ACCEPT OFFER
+===================================================== */
+
+async function workerAccepts(
+    workerName
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/accept-offer",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        worker_name:
+                            workerName
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showToast(
+                data.message
+            );
+
+            return;
+
+        }
+
+
+        const offer =
+            sentOffers.find(
+                x =>
+                    x.worker_name ===
+                    workerName
+            );
+
+
+        if (offer) {
+
+            offer.status =
+                "Accepted";
+
+        }
+
+
+        acceptedWorkers.push(
+            workerName
+        );
+
+
+        confirmedWorkers =
+            data.confirmed_workers;
+
+
+        updateDashboard(
+            requiredWorkers,
+            confirmedWorkers,
+            data.shortage
+        );
+
+
+        renderOfferList();
+
+
+        addActivity(
+            `${workerName} accepted the shift.`
+        );
+
+
+        showToast(
+            `${workerName} accepted the shift.`
+        );
+
+
+        checkWave2Requirement();
+
+    }
+
+    catch (error) {
+
+        showToast(
+            "Unable to process acceptance."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DECLINE OFFER
+===================================================== */
+
+async function workerDeclines(
+    workerName
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/decline-offer",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        worker_name:
+                            workerName
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showToast(
+                data.message
+            );
+
+            return;
+
+        }
+
+
+        const offer =
+            sentOffers.find(
+                x =>
+                    x.worker_name ===
+                    workerName
+            );
+
+
+        if (offer) {
+
+            offer.status =
+                "Declined";
+
+        }
+
+
+        declinedWorkers.push(
+            workerName
+        );
+
+
+        renderOfferList();
+
+
+        addActivity(
+            `${workerName} declined the shift.`
+        );
+
+
+        showToast(
+            `${workerName} declined the shift.`
+        );
+
+
+        checkWave2Requirement();
+
+    }
+
+    catch (error) {
+
+        showToast(
+            "Unable to process decline."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OFFER KPI
+===================================================== */
+
+function updateOfferKpis() {
+
+    const total =
+        sentOffers.length;
+
+
+    const accepted =
+        sentOffers.filter(
+            x =>
+                x.status ===
+                "Accepted"
+        ).length;
+
+
+    const declined =
+        sentOffers.filter(
+            x =>
+                x.status ===
+                "Declined"
+        ).length;
+
+
+    document.getElementById(
+        "offersKpi"
+    ).innerText =
+        total;
+
+
+    document.getElementById(
+        "acceptedKpi"
+    ).innerText =
+        accepted;
+
+
+    document.getElementById(
+        "declinedKpi"
+    ).innerText =
+        declined;
+
+}
+
+
+/* =====================================================
+   WAVE 2 CHECK
+===================================================== */
+
+function checkWave2Requirement() {
+
+    const shortage =
+        Math.max(
+            0,
+            requiredWorkers -
+            confirmedWorkers
+        );
+
+
+    const pending =
+        sentOffers.filter(
+            offer =>
+                offer.status ===
+                "Pending"
+        ).length;
+
+
+    const wave2Card =
+        document.getElementById(
+            "wave2Card"
+        );
+
+
+    const recommendation =
+        document.getElementById(
+            "wave2Recommendation"
+        );
+
+
+    if (shortage === 0) {
+
+        setNextAction(
+            "success",
+            "Workforce fully recovered. Wave 2 is not required."
+        );
+
+
+        wave2Card.classList.remove(
+            "wave-active"
+        );
+
+
+        recommendation.innerText =
+            "All required workers have been confirmed.";
+
+
+        return;
+
+    }
+
+
+    if (wave2Activated) {
+
+        wave2Card.classList.add(
+            "wave-active"
+        );
+
+
+        recommendation.innerText =
+            `Wave 2 is active. Backup workforce is being used to recover the remaining ${shortage} worker(s).`;
+
+
+        return;
+
+    }
+
+
+    if (pending > 0) {
+
+        setNextAction(
+            "info",
+            `Waiting for ${pending} Wave 1 worker response(s).`
+        );
+
+
+        recommendation.innerText =
+            `Waiting for ${pending} Wave 1 worker response(s) before activating Wave 2.`;
+
+
+        return;
+
+    }
+
+
+    if (
+        shortage > 0 &&
+        sentOffers.length > 0
+    ) {
+
+        wave2Card.classList.add(
+            "wave-active"
+        );
+
+
+        recommendation.innerText =
+            `Wave 1 exhausted. ${shortage} worker(s) still required. Automatically activating Wave 2...`;
+
+
+        setNextAction(
+            "warning",
+            `Wave 1 exhausted. ${shortage} worker(s) remain. Activating Wave 2 automatically.`
+        );
+
+
+        activateWave2();
+
+    }
+
+}
+
+
+/* =====================================================
+   ACTIVATE WAVE 2
+===================================================== */
+
+async function activateWave2() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/wave2",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    }
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showToast(
+                "Unable to activate Wave 2."
+            );
+
+            return;
+
+        }
+
+
+        wave2Activated =
+            true;
+
+
+        document.getElementById(
+            "wave2Radius"
+        ).innerText =
+            `${data.radius} km`;
+
+
+        document.getElementById(
+            "wave2Incentive"
+        ).innerText =
+            `₹${data.incentive}`;
+
+
+        document.getElementById(
+            "wave2Badge"
+        ).className =
+            "badge bg-danger";
+
+
+        document.getElementById(
+            "wave2Badge"
+        ).innerText =
+            "Active";
+
+
+        document.getElementById(
+            "wave2Button"
+        ).innerHTML = `
+
+            <i
+                class="bi bi-check-circle"
+            ></i>
+
+            Wave 2 Active
+
+        `;
+
+
+        document.getElementById(
+            "wave2Button"
+        ).disabled = true;
+
+
+        document.getElementById(
+            "wave2Card"
+        ).classList.add(
+            "wave-active"
+        );
+
+
+        addActivity(
+            `Wave 2 activated. Search radius expanded to ${data.radius} km with ₹${data.incentive} incentive.`
+        );
+
+
+        showToast(
+            "Wave 2 activated."
+        );
+
+
+        await loadBackupWorkers();
+
+        updateAnalyticsKPIs();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Unable to activate Wave 2."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD BACKUP WORKERS
+===================================================== */
+
+async function loadBackupWorkers() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/backup-workers"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            return;
+
+        }
+
+
+        wave2Workers =
+            data.workers || [];
+
+
+        document.getElementById(
+            "backupKpi"
+        ).innerText =
+            wave2Workers.length;
+
+
+        renderBackupWorkers();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER BACKUP WORKERS
+===================================================== */
+
+function renderBackupWorkers() {
+
+    const container =
+        document.getElementById(
+            "backupWorkers"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (!wave2Workers.length) {
+
+        container.innerHTML = `
+
+            <div class="col-12">
+
+                <div
+                    class="alert alert-warning"
+                >
+
+                    No backup workers available.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    wave2Workers.forEach(
+        worker => {
+
+            container.appendChild(
+                createBackupCard(
+                    worker
+                )
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   BACKUP CARD
+===================================================== */
+
+function createBackupCard(
+    worker
+) {
+
+    const col =
+        document.createElement(
+            "div"
+        );
+
+
+    col.className =
+        "col-lg-6";
+
+
+    col.innerHTML = `
+
+        <div
+            class="card p-4 h-100"
+        >
+
+            <div
+                class="d-flex justify-content-between"
+            >
+
+                <div>
+
+                    <h5>
+                        ${worker.name}
+                    </h5>
+
+
+                    <span
+                        class="badge bg-secondary"
+                    >
+
+                        ${worker.skill}
+
+                    </span>
+
+                </div>
+
+
+                <span
+                    class="badge bg-danger"
+                >
+
+                    Wave 2
+
+                </span>
+
+            </div>
+
+
+            <div class="mt-3">
+
+                <div>
+
+                    <i
+                        class="bi bi-geo-alt"
+                    ></i>
+
+                    ${worker.distance} km
+
+                </div>
+
+
+                <div>
+
+                    <i
+                        class="bi bi-clock"
+                    ></i>
+
+                    ${worker.availability}
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <div>
+
+                <div
+                    class="match-reason reason-info"
+                >
+
+                    <i
+                        class="bi bi-shield-check"
+                    ></i>
+
+                    Backup workforce candidate
+
+                </div>
+
+
+                <div
+                    class="match-reason reason-success"
+                >
+
+                    <i
+                        class="bi bi-geo-alt-fill"
+                    ></i>
+
+                    Within expanded search radius
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-outline-primary w-100 mt-3"
+                onclick='sendBackupShiftOffer(${JSON.stringify(worker)})'
+            >
+
+                <i
+                    class="bi bi-send"
+                ></i>
+
+                Send Backup Offer
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    return col;
+
+}
+
+
+/* =====================================================
+   SEND BACKUP OFFER
+===================================================== */
+
+async function sendBackupShiftOffer(
+    worker
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/send-offer",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        worker_name:
+                            worker.name,
+
+                        score:
+                            worker.score || 0,
+
+                        reasons:
+                            worker.reasons || [],
+
+                        wave:
+                            2
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showToast(
+                data.message
+            );
+
+            return;
+
+        }
+
+
+        sentOffers.push(
+            data.offer
+        );
+
+
+        renderOfferList();
+
+
+        addActivity(
+            `Backup offer sent to ${worker.name}.`
+        );
+
+
+        showToast(
+            `Backup offer sent to ${worker.name}.`
+        );
+
+    }
+
+    catch (error) {
+
+        showToast(
+            "Unable to send backup offer."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SIMULATOR
+===================================================== */
+
+async function runSimulation() {
+
+    const required =
+        Number(
+            document.getElementById(
+                "simRequired"
+            ).value
+        );
+
+
+    const confirmed =
+        Number(
+            document.getElementById(
+                "simConfirmed"
+            ).value
+        );
+
+
+    const wave1 =
+        Number(
+            document.getElementById(
+                "simWave1"
+            ).value
+        );
+
+
+    const wave2 =
+        Number(
+            document.getElementById(
+                "simWave2"
+            ).value
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/simulate",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        required_workers:
+                            required,
+
+                        confirmed_workers:
+                            confirmed,
+
+                        wave1_recovery:
+                            wave1,
+
+                        wave2_recovery:
+                            wave2
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        document.getElementById(
+            "simulationResult"
+        ).innerHTML = `
+
+            <div class="row g-3">
+
+
+                <div class="col-md-3">
+
+                    <div
+                        class="card p-3 bg-light"
+                    >
+
+                        <small>
+                            Initial Shortage
+                        </small>
+
+
+                        <h3>
+                            ${data.initial_shortage}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div
+                        class="card p-3 bg-light"
+                    >
+
+                        <small>
+                            After Wave 1
+                        </small>
+
+
+                        <h3>
+                            ${data.after_wave1}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div
+                        class="card p-3 bg-light"
+                    >
+
+                        <small>
+                            Wave 2 Recovery
+                        </small>
+
+
+                        <h3>
+                            ${data.wave2_recovery}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div
+                        class="card p-3 bg-light"
+                    >
+
+                        <small>
+                            Final Shortage
+                        </small>
+
+
+                        <h3>
+                            ${data.final_shortage}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-12">
+
+                    <div
+                        class="alert ${
+                            data.final_shortage === 0
+                            ? "alert-success"
+                            : "alert-warning"
+                        }"
+                    >
+
+                        <strong>
+                            Scenario Result:
+                        </strong>
+
+                        ${data.scenario_status}
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-12">
+
+                    <div
+                        class="alert alert-light border"
+                    >
+
+                        <strong>
+                            Calculation:
+                        </strong>
+
+                        ${required}
+                        −
+                        ${confirmed}
+                        =
+                        ${data.initial_shortage}
+
+                        →
+
+                        ${data.initial_shortage}
+                        −
+                        ${data.wave1_recovery}
+                        =
+                        ${data.after_wave1}
+
+                        →
+
+                        ${data.after_wave1}
+                        −
+                        ${data.wave2_recovery}
+                        =
+                        ${data.final_shortage}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        addActivity(
+            "What-if workforce simulation completed."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Simulation failed."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ANALYTICS KPI
+===================================================== */
+
+function updateAnalyticsKPIs() {
+
+    const required =
+        Math.max(
+            0,
+            Number(requiredWorkers)
+        );
+
+
+    const confirmed =
+        Math.max(
+            0,
+            Number(confirmedWorkers)
+        );
+
+
+    const shortage =
+        Math.max(
+            0,
+            required - confirmed
+        );
+
+
+    const recoveryRate =
+        required > 0
+        ? Math.min(
+            100,
+            Math.round(
+                (confirmed / required) * 100
+            )
+        )
+        : 0;
+
+
+    document.getElementById(
+        "analyticsRecoveryRate"
+    ).innerText =
+        `${recoveryRate}%`;
+
+
+    document.getElementById(
+        "analyticsConfirmed"
+    ).innerText =
+        confirmed;
+
+
+    document.getElementById(
+        "analyticsShortage"
+    ).innerText =
+        shortage;
+
+
+    let wave =
+        "Wave 1";
+
+
+    if (shortage === 0) {
+
+        wave =
+            "Recovered";
+
+    }
+
+    else if (wave2Activated) {
+
+        wave =
+            "Wave 2";
+
+    }
+
+
+    document.getElementById(
+        "analyticsWave"
+    ).innerText =
+        wave;
+
+}
+
+
+/* =====================================================
+   AVAILABILITY
+===================================================== */
+
+async function loadAvailability() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/worker-availability"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const container =
+            document.getElementById(
+                "availabilityContainer"
+            );
+
+
+        container.innerHTML = "";
+
+
+        if (
+            !data.workers ||
+            !data.workers.length
+        ) {
+
+            container.innerText =
+                "No workers found.";
+
+            return;
+
+        }
+
+
+        const table =
+            document.createElement(
+                "div"
+            );
+
+
+        table.className =
+            "table-responsive";
+
+
+        let html = `
+
+            <table
+                class="table align-middle"
+            >
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Worker
+                        </th>
+
+                        <th>
+                            Skill
+                        </th>
+
+                        <th>
+                            Distance
+                        </th>
+
+                        <th>
+                            Availability
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+        data.workers.forEach(
+            worker => {
+
+                html += `
+
+                    <tr>
+
+                        <td>
+
+                            <strong>
+                                ${worker.name}
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+                            ${worker.skill}
+                        </td>
+
+
+                        <td>
+                            ${worker.distance} km
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="badge bg-light text-dark"
+                            >
+
+                                ${worker.availability}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+        table.innerHTML =
+            html;
+
+
+        container.appendChild(
+            table
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   WORKFORCE CHART
+===================================================== */
+
+function createWorkforceChart() {
+
+    const canvas =
+        document.getElementById(
+            "workforceChart"
+        );
+
+
+    if (!canvas) return;
+
+
+    workforceChart =
+        new Chart(
+            canvas,
+            {
+
+                type: "bar",
+
+
+                data: {
+
+                    labels: [
+
+                        "Required",
+
+                        "Confirmed",
+
+                        "Shortage"
+
+                    ],
+
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Workers",
+
+
+                            data: [
+
+                                requiredWorkers,
+
+                                confirmedWorkers,
+
+                                Math.max(
+                                    0,
+                                    requiredWorkers -
+                                    confirmedWorkers
+                                )
+
+                            ]
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+
+                    plugins: {
+
+                        legend: {
+
+                            display: false
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        y: {
+
+                            beginAtZero: true
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   UPDATE WORKFORCE CHART
+===================================================== */
+
+function updateWorkforceChart() {
+
+    if (!workforceChart)
+        return;
+
+
+    const shortage =
+        Math.max(
+            0,
+            requiredWorkers -
+            confirmedWorkers
+        );
+
+
+    workforceChart
+        .data
+        .datasets[0]
+        .data = [
+
+            requiredWorkers,
+
+            confirmedWorkers,
+
+            shortage
+
+        ];
+
+
+    workforceChart.update();
+
+}
+
+
+/* =====================================================
+   MATCH SCORE CHART
+===================================================== */
+
+function createMatchScoreChart() {
+
+    const canvas =
+        document.getElementById(
+            "matchScoreChart"
+        );
+
+
+    if (!canvas)
+        return;
+
+
+    matchScoreChart =
+        new Chart(
+            canvas,
+            {
+
+                type: "bar",
+
+
+                data: {
+
+                    labels: [],
+
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Match Score",
+
+
+                            data: []
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+
+                    scales: {
+
+                        y: {
+
+                            beginAtZero: true,
+
+                            max: 100
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   UPDATE MATCH SCORE CHART
+===================================================== */
+
+function updateMatchScoreChart(
+    workers
+) {
+
+    if (!matchScoreChart)
+        return;
+
+
+    matchScoreChart
+        .data
+        .labels =
+        workers.map(
+            worker =>
+                worker.name
+        );
+
+
+    matchScoreChart
+        .data
+        .datasets[0]
+        .data =
+        workers.map(
+            worker =>
+                worker.score
+        );
+
+
+    matchScoreChart.update();
+
+}
+
+
+/* =====================================================
+   STEP 9
+   SAP INTEGRATION HELPERS
+===================================================== */
+
+function setSAPStep(
+    cardId,
+    statusId,
+    state,
+    message
+) {
+
+    const card =
+        document.getElementById(
+            cardId
+        );
+
+
+    const status =
+        document.getElementById(
+            statusId
+        );
+
+
+    card.classList.remove(
+        "active",
+        "completed"
+    );
+
+
+    if (state === "running") {
+
+        card.classList.add(
+            "active"
+        );
+
+
+        status.className =
+            "sap-status text-primary";
+
+
+        status.innerHTML = `
+
+            <i
+                class="bi bi-arrow-repeat"
+            ></i>
+
+            ${message}
+
+        `;
+
+    }
+
+
+    else if (state === "completed") {
+
+        card.classList.add(
+            "completed"
+        );
+
+
+        status.className =
+            "sap-status text-success";
+
+
+        status.innerHTML = `
+
+            <i
+                class="bi bi-check-circle-fill"
+            ></i>
+
+            ${message}
+
+        `;
+
+    }
+
+
+    else {
+
+        status.className =
+            "sap-status text-secondary";
+
+
+        status.innerHTML = `
+
+            <i
+                class="bi bi-circle"
+            ></i>
+
+            ${message}
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SAP ACTIVITY
+===================================================== */
+
+function addSAPActivity(
+    message,
+    state = "running"
+) {
+
+    const container =
+        document.getElementById(
+            "sapActivityLog"
+        );
+
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.className =
+        "integration-step";
+
+
+    let icon =
+        "bi-arrow-repeat text-primary";
+
+
+    if (state === "completed") {
+
+        icon =
+            "bi-check-circle-fill text-success";
+
+    }
+
+
+    item.innerHTML = `
+
+        <div>
+
+            <i
+                class="bi ${icon} me-2"
+            ></i>
+
+            ${message}
+
+        </div>
+
+        <small class="text-muted">
+
+            ${new Date().toLocaleTimeString()}
+
+        </small>
+
+    `;
+
+
+    container.prepend(
+        item
+    );
+
+}
+
+
+/* =====================================================
+   STEP 9
+   RUN SAP INTEGRATION FLOW
+===================================================== */
+
+async function runSAPIntegration() {
+
+    if (sapFlowRunning)
+        return;
+
+
+    sapFlowRunning = true;
+
+
+    const button =
+        document.getElementById(
+            "sapFlowButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "sapFlowStatus"
+        );
+
+
+    const overallBadge =
+        document.getElementById(
+            "sapOverallBadge"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.innerHTML = `
+
+        <span
+            class="spinner-border spinner-border-sm me-2"
+        ></span>
+
+        Running Integration...
+
+    `;
+
+
+    overallBadge.className =
+        "badge bg-primary";
+
+
+    overallBadge.innerText =
+        "Running";
+
+
+    status.className =
+        "alert alert-primary";
+
+
+    status.innerHTML = `
+
+        <i
+            class="bi bi-arrow-repeat"
+        ></i>
+
+        SAP integration flow is running...
+
+    `;
+
+
+    document.getElementById(
+        "sapActivityLog"
+    ).innerHTML = "";
+
+
+    /* -------------------------------------------------
+       STEP 1 — BTP
+    ------------------------------------------------- */
+
+    setSAPStep(
+        "sapBtpCard",
+        "sapBtpStatus",
+        "running",
+        "Processing"
+    );
+
+
+    addSAPActivity(
+        "SAP BTP started the proposed Workforce Mesh integration flow."
+    );
+
+
+    await wait(
+        900
+    );
+
+
+    setSAPStep(
+        "sapBtpCard",
+        "sapBtpStatus",
+        "completed",
+        "Integration layer active"
+    );
+
+
+    addSAPActivity(
+        "SAP BTP completed application and integration orchestration.",
+        "completed"
+    );
+
+
+    /* -------------------------------------------------
+       STEP 2 — SUCCESSFACTORS
+    ------------------------------------------------- */
+
+    setSAPStep(
+        "sapSfCard",
+        "sapSfStatus",
+        "running",
+        "Reading workforce data"
+    );
+
+
+    addSAPActivity(
+        "SuccessFactors: proposed workforce, skill and availability data requested."
+    );
+
+
+    await wait(
+        900
+    );
+
+
+    setSAPStep(
+        "sapSfCard",
+        "sapSfStatus",
+        "completed",
+        "Workforce data ready"
+    );
+
+
+    addSAPActivity(
+        "SuccessFactors: workforce data prepared for recovery planning.",
+        "completed"
+    );
+
+
+    /* -------------------------------------------------
+       STEP 3 — IBP
+    ------------------------------------------------- */
+
+    setSAPStep(
+        "sapIbpCard",
+        "sapIbpStatus",
+        "running",
+        "Evaluating demand scenario"
+    );
+
+
+    addSAPActivity(
+        "SAP IBP: demand and workforce requirement scenario evaluated."
+    );
+
+
+    await wait(
+        900
+    );
+
+
+    setSAPStep(
+        "sapIbpCard",
+        "sapIbpStatus",
+        "completed",
+        "Scenario evaluated"
+    );
+
+
+    addSAPActivity(
+        "SAP IBP: what-if workforce scenario completed.",
+        "completed"
+    );
+
+
+    /* -------------------------------------------------
+       STEP 4 — BUSINESS AI
+    ------------------------------------------------- */
+
+    setSAPStep(
+        "sapAiCard",
+        "sapAiStatus",
+        "running",
+        "Generating recommendation"
+    );
+
+
+    addSAPActivity(
+        "SAP Business AI: proposed intelligent workforce recommendation generated."
+    );
+
+
+    await wait(
+        900
+    );
+
+
+    setSAPStep(
+        "sapAiCard",
+        "sapAiStatus",
+        "completed",
+        "Recommendation ready"
+    );
+
+
+    addSAPActivity(
+        "SAP Business AI: recommendation prepared for recovery decision support.",
+        "completed"
+    );
+
+
+    /* -------------------------------------------------
+       STEP 5 — ANALYTICS CLOUD
+    ------------------------------------------------- */
+
+    setSAPStep(
+        "sapSacCard",
+        "sapSacStatus",
+        "running",
+        "Updating analytics"
+    );
+
+
+    addSAPActivity(
+        "SAP Analytics Cloud: recovery metrics prepared for management analytics."
+    );
+
+
+    await wait(
+        900
+    );
+
+
+    setSAPStep(
+        "sapSacCard",
+        "sapSacStatus",
+        "completed",
+        "Analytics ready"
+    );
+
+
+    addSAPActivity(
+        "SAP Analytics Cloud: proposed recovery dashboard updated.",
+        "completed"
+    );
+
+
+    /* -------------------------------------------------
+       COMPLETED
+    ------------------------------------------------- */
+
+    status.className =
+        "alert alert-success";
+
+
+    status.innerHTML = `
+
+        <i
+            class="bi bi-check-circle-fill"
+        ></i>
+
+        <strong>
+            SAP integration flow completed.
+        </strong>
+
+        Proposed data flow successfully demonstrated
+        from BTP through workforce data, planning,
+        AI recommendation and analytics.
+
+    `;
+
+
+    overallBadge.className =
+        "badge bg-success";
+
+
+    overallBadge.innerText =
+        "Completed";
+
+
+    button.disabled =
+        false;
+
+
+    button.innerHTML = `
+
+        <i
+            class="bi bi-arrow-clockwise"
+        ></i>
+
+        Run Again
+
+    `;
+
+
+    addSAPActivity(
+        "Complete SAP architecture simulation finished successfully.",
+        "completed"
+    );
+
+
+    addActivity(
+        "SAP integration architecture simulation completed."
+    );
+
+
+    showToast(
+        "SAP integration flow completed."
+    );
+
+
+    sapFlowRunning =
+        false;
+
+}
+
+
+/* =====================================================
+   WAIT HELPER
+===================================================== */
+
+function wait(
+    milliseconds
+) {
+
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                milliseconds
+            )
+    );
+
+}
+
+
+/* =====================================================
+   LOAD DASHBOARD STATE
+===================================================== */
+
+async function loadDashboardState() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/dashboard-state"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            return;
+
+        }
+
+
+        requiredWorkers =
+            data.required_workers;
+
+
+        confirmedWorkers =
+            data.confirmed_workers;
+
+
+        sentOffers =
+            data.offers || [];
+
+
+        acceptedWorkers =
+            sentOffers
+                .filter(
+                    offer =>
+                        offer.status ===
+                        "Accepted"
+                )
+                .map(
+                    offer =>
+                        offer.worker_name
+                );
+
+
+        declinedWorkers =
+            sentOffers
+                .filter(
+                    offer =>
+                        offer.status ===
+                        "Declined"
+                )
+                .map(
+                    offer =>
+                        offer.worker_name
+                );
+
+
+        wave2Activated =
+            data.wave2_activated;
+
+
+        document.getElementById(
+            "requiredInput"
+        ).value =
+            requiredWorkers;
+
+
+        document.getElementById(
+            "confirmedInput"
+        ).value =
+            confirmedWorkers;
+
+
+        updateDashboard(
+            requiredWorkers,
+            confirmedWorkers,
+            data.shortage
+        );
+
+
+        renderOfferList();
+
+
+        document.getElementById(
+            "wave2Radius"
+        ).innerText =
+            `${data.wave2_radius} km`;
+
+
+        document.getElementById(
+            "wave2Incentive"
+        ).innerText =
+            `₹${data.incentive}`;
+
+
+        if (wave2Activated) {
+
+            document.getElementById(
+                "wave2Badge"
+            ).className =
+                "badge bg-danger";
+
+
+            document.getElementById(
+                "wave2Badge"
+            ).innerText =
+                "Active";
+
+
+            document.getElementById(
+                "wave2Button"
+            ).innerHTML = `
+
+                <i
+                    class="bi bi-check-circle"
+                ></i>
+
+                Wave 2 Active
+
+            `;
+
+
+            document.getElementById(
+                "wave2Button"
+            ).disabled =
+                true;
+
+
+            loadBackupWorkers();
+
+        }
+
+
+        setNextAction(
+            "info",
+            data.next_action
+        );
+
+
+        updateAnalyticsKPIs();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard state error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   REFRESH DASHBOARD
+===================================================== */
+
+async function refreshDashboard() {
+
+    await loadDashboardState();
+
+    await loadAvailability();
+
+}
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function() {
+
+        createWorkforceChart();
+
+        createMatchScoreChart();
+
+        await refreshDashboard();
+
+
+        updateDashboard(
+            requiredWorkers,
+            confirmedWorkers,
+            Math.max(
+                0,
+                requiredWorkers -
+                confirmedWorkers
+            )
+        );
+
+
+        updateAnalyticsKPIs();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
